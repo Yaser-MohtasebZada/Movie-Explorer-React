@@ -1,16 +1,61 @@
-# React + Vite
+# Movie Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React app for browsing and searching movies using **The Movie Database (TMDB) API**. Search by title, sort by release date or rating, and page through results.
 
-Currently, two official plugins are available:
+Built for CPSC 349 (Front-End Engineering) at Cal State Fullerton.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **Live search:** results update as you type
+- **Sorting:** by release date or rating, ascending or descending
+- **Pagination:** browse through every page of results
+- **Movie cards:** poster, title, release date, and rating
+- **Loading state** while data is fetched
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech stack
 
-## Expanding the ESLint configuration
+- React 19 with functional components and hooks (`useState`, `useEffect`)
+- Vite for dev server and builds
+- Axios for API requests
+- TMDB REST API (`/discover/movie` and `/search/movie`)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project structure
+
+```
+src/
+├── App.jsx              # State, data fetching, layout
+├── components/
+│   ├── Header.jsx       # Search bar and sort dropdown
+│   ├── MovieCard.jsx    # Single movie display
+│   └── Pagination.jsx   # Previous / next controls
+└── index.css            # Styles
+```
+
+## Run it locally
+
+1. Get a free API key from [TMDB](https://www.themoviedb.org/settings/api).
+2. Clone the repo and install dependencies:
+   ```bash
+   git clone https://github.com/Yaser-MohtasebZada/Movie-Explorer-React.git
+   cd Movie-Explorer-React
+   npm install
+   ```
+3. Copy `.env.example` to `.env` and add your key:
+   ```bash
+   cp .env.example .env
+   # then edit .env: VITE_TMDB_API_KEY=your_key
+   ```
+4. Start the dev server:
+   ```bash
+   npm run dev
+   ```
+
+## Notes
+
+The API key is loaded from an environment variable and `.env` is git-ignored, so keys never get committed. Since this is a front-end-only app, the key is still visible in the browser at runtime. For a production app, requests would go through a small backend or serverless proxy instead.
+
+## What I'd add next
+
+- Movie detail page with cast and trailers
+- Debounced search to cut down on API calls
+- Error handling and an empty-results state

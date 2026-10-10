@@ -5,7 +5,7 @@ import Pagination from "./components/Pagination";
 import MovieCard from "./components/MovieCard";
 import "./index.css";
 
-const API_KEY = "e68b750f4319da9c53438c4e0c395ab3";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 
